@@ -37,6 +37,10 @@ jobs:
         run: 
             echo "${{env.SOURCE_SUBSCRIPTION}}"
             
+            
+      - name: "source subscription is equal to target subscription" 
+        run: |
+         
             $Arrays = "${{env.SOURCE_SUBSCRIPTION}}".Split("-")
 
             echo $Arrays[4]
