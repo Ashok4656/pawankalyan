@@ -35,5 +35,23 @@ jobs:
       
       - name: "source subscription is equal to target subscription"
         run: 
-            echo "${{env.SOURCE_SUBSCRIPTION.(4)}}"
+            echo "${{env.SOURCE_SUBSCRIPTION}}"
+            
+            $Arrays = "${{env.SOURCE_SUBSCRIPTION}}".Split("-")
+
+            echo $Arrays[4]
+
+            if ($Arrays[4] -eq 'aue') {
+
+             $targetsubscription = "sub-by-cld-solutions-aues-02"
+
+             echo $targetsubscription
+            }
+            else {
+
+            Write-Host "subscription does not match "
+
+            }
+
+
       
