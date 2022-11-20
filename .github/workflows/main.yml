@@ -1,0 +1,41 @@
+name: Azure Site Recovery
+on:
+  workflow_dispatch:
+    inputs:
+      Subscription:
+        type: choice
+        description: "Please select Source Subscription"
+        options:
+          - sub-jda-cld-solutions-01
+          - sub-by-cld-solutions-ase-02
+          - sub-by-cld-solutions-aue-02
+          - sub-by-cld-solutions-eus2-02
+          - sub-by-cld-solutions-euw-02
+        required: true
+
+      ResourceGroup:
+        description: "Provide Source Resource Group"
+        required: true
+    
+      requestor:
+        description: 'Provide Requestor email id (If multiple Emails provide inputs as "abc@blueyonder.com,xyz@jda.com" with Comma[,] separated)'
+        required: true
+
+
+env:
+  SOURCE_SUBSCRIPTION: "${{ github.event.inputs.Subscription }}"
+  SOURCE_RESOURCEGROUP: "${{ github.event.inputs.ResourceGroup }}"
+  REQUESTOREMAIL: "${{ github.event.inputs.requestor }}"
+ 
+jobs:
+  GET_DETAILS_FROM_AZURE:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: "source subscription is equal to target subscription"
+        run:
+            echo "${{env.SOURCE_SUBSCRIPTION}}"
+      
+      
+        
