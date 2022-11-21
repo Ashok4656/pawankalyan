@@ -100,5 +100,5 @@ jobs:
         with:
           azPSVersion: "latest"
           inlineScript: |
-           $serverDetails = Get-AzResourceGroup -Name "${{env.TargetresourceGroup}}"
+             echo "${{env.TargetresourceGroup}}"
            
