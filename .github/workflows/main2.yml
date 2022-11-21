@@ -67,7 +67,7 @@ jobs:
              echo $targetResourceGroup
             }
 
-            if ($Arrays_subscription[4] -eq 'eus2' -and $Arrays_resourcegroup[-1] -eq 'eus2') {
+            if ($Arrays_subscription[4] -eq 'eus2' -or $Arrays_resourcegroup[-1] -eq 'eus2') {
 
              $targetsubscription = "sub-by-cld-solutions-cus-02"
               $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-cus"
