@@ -62,7 +62,7 @@ jobs:
             if ($Arrays_subscription[4] -eq 'ase' -and $Arrays_resourcegroup[-1] -eq 'ase') {
 
              $targetsubscription = "sub-by-cld-solutions-ae-02"
-             $targetResourceGroup = "rg-$Arrays_resourcegroup[1]-dr-ae"
+             $targetResourceGroup = "rg-($Arrays_resourcegroup[1])-dr-ae"
              echo $targetsubscription
              echo $targetResourceGroup
             }
