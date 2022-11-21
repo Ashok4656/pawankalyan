@@ -93,6 +93,7 @@ jobs:
         id: vm_details
         uses: azure/powershell@v1
         with:
+          azPSVersion: "latest"
           inlineScript: |
            $serverDetails = Get-AzVM -Name "$targetResourceGroup"
            
