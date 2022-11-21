@@ -1,4 +1,27 @@
 name: pavankalyan
 on:
   workflow_dispatch:
+
+   inputs:
+      Subscription:
+        type: choice
+        description: "Please select Source Subscription"
+        options:
+          - sub-jda-cld-solutions-01
+          - sub-by-cld-solutions-ase-02
+          - sub-by-cld-solutions-aue-02
+          - sub-by-cld-solutions-eus2-02
+          - sub-by-cld-solutions-euw-02
+        required: true
+
+      ResourceGroup:
+        description: "Provide Source Resource Group"
+        required: true
+    
+      requestor:
+        description: 'Provide Requestor email id (If multiple Emails provide inputs as "abc@blueyonder.com,xyz@jda.com" with Comma[,] separated)'
+        required: true
+
+
  
+
