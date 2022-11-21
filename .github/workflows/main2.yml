@@ -75,7 +75,7 @@ jobs:
              echo $targetsubscription
             }
            
-            if (${{env.SOURCE_SUBSCRIPTION}} -eq 'sub-jda-cld-solutions-01') {
+            if ("${{env.SOURCE_SUBSCRIPTION}}" -eq 'sub-jda-cld-solutions-01') {
 
              $targetsubscription = "sub-jda-cld-dr-solutions-01"
 
