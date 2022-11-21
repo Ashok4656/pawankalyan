@@ -26,13 +26,16 @@ env:
   SOURCE_SUBSCRIPTION: "${{ github.event.inputs.Subscription }}"
   SOURCE_RESOURCEGROUP: "${{ github.event.inputs.ResourceGroup }}"
   REQUESTOREMAIL: "${{ github.event.inputs.requestor }}"
+  Targetsubscription1: ${{ steps.target_components.outputs.targetsubscription }}
+  TargetresourceGroup2: ${{ steps.target_components.outputs.targetResourceGroup }}
+     
   
 jobs:
   GET_DETAILS_FROM_AZURE:
     runs-on: ubuntu-latest
     outputs:
-      Targetsubscription: ${{ steps.target_components.outputs.targetsubscription }}
-      TargetresourceGroup: ${{ steps.target_components.outputs.targetResourceGroup }}
+      Targetsubscription3: ${{ steps.target_components.outputs.targetsubscription }}
+      TargetresourceGroup4: ${{ steps.target_components.outputs.targetResourceGroup }}
      
       
     steps:
@@ -89,8 +92,10 @@ jobs:
              echo "source subscription and source resource group location was not matched
              please select the appropriate resouece."
             }
-             echo "$TargetresourceGroup"
-             echo "$Targetsubscription"
+             echo "$TargetresourceGroup2"
+             echo "$Targetsubscription1"
+             echo "$TargetresourceGroup4"
+             echo "$Targetsubscription3"
              
       - name: " Validate the core components in RG "
         id: vm_details
@@ -98,5 +103,6 @@ jobs:
         with:
           azPSVersion: "latest"
           inlineScript: |
-             echo "${{ steps.target_components.outputs.targetsubscription }}"
+             $tr = "${{ steps.target_components.outputs.targetsubscription }}"
+             echo $tr
            
