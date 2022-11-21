@@ -26,8 +26,6 @@ env:
   SOURCE_SUBSCRIPTION: "${{ github.event.inputs.Subscription }}"
   SOURCE_RESOURCEGROUP: "${{ github.event.inputs.ResourceGroup }}"
   REQUESTOREMAIL: "${{ github.event.inputs.requestor }}"
-  Targetsubscription: ${{ steps.target_components.outputs.targetsubscription }}
-  TargetresourceGroup: ${{ steps.target_components.outputs.targetResourceGroup }}
   
 jobs:
   GET_DETAILS_FROM_AZURE:
@@ -100,5 +98,5 @@ jobs:
         with:
           azPSVersion: "latest"
           inlineScript: |
-             echo "${{env.TargetresourceGroup}}"
+             echo "$Targetsubscription"
            
