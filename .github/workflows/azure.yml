@@ -114,14 +114,27 @@ jobs:
                     $NetworkSecurityGroup = $RGDetails.Deployments.NetworkSecurityGroupName
                     $RecoveryServicesVault = $RGDetails.Deployments.RecoveryServicesVaultName
                     $LoadBalancer = $RGDetails.Deployments.LoadBalancerName
-                    
+                
+                
+                if (${{ steps.target_components.outputs.targetsubscription }} -eq 'sub-jda-cld-dr-solutions-01'){
+                  $VnetName = "vnet-dr-$($Arrays_resourcegroup[1])-01";
+                  $VnetRg = "rg-jda-prod-network-$($Arrays_resourcegroup[1]))-01";
+                }else{
+                  $VnetName = "vnet-$($Arrays_resourcegroup[1])-01";
+                  $VnetRg = "rg-network-$($Arrays_resourcegroup[1])-01"; }
+                  
+                  $subnetName = "sn-$($Arrays_resourcegroup[1])-dr-$locAbbr"
+            
+                  $subnet = Get-AzVirtualNetworkSubnetConfig -ResourceGroupName $VnetRg -VirtualNetwork $VnetName -Name $SubnetName  
+                   
+              
                     
                 } else {
                     $validationError = "Server $($serverName)/Tags is not configured in Subscription or Incorrect Server/Subscription is Given, please check your given input again"
                     throw "Server $($serverName)/Tags is not configured in Subscription or Incorrect Server/Subscription is Given, please check your given input again"
                 }
                 Write-Host "================================================================================================================"
-                Write-Host "################################################## VM Details ##################################################"
+                Write-Host "################################################## RG Details ##################################################"
                 Write-Host "SUBSCRIPTION        : $subscription"
                 Write-Host "resourceGroup       : $resourceGroup"
                 Write-Host "PRODUCT             : $product"
