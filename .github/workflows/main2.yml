@@ -82,7 +82,7 @@ jobs:
              echo $targetResourceGroup
             }
            
-            if ("${{env.SOURCE_SUBSCRIPTION}}" -eq 'sub-jda-cld-solutions-01' -and  $Arrays_resourcegroup[-1] -eq 'ase' -or $Arrays_resourcegroup[-1] -eq 'aue' -or $Arrays_resourcegroup[-1] -eq 'eus2' -or $Arrays_resourcegroup[-1] -eq 'euw') {
+            if ("${{env.SOURCE_SUBSCRIPTION}}" -eq 'sub-jda-cld-solutions-01' -and ($Arrays_resourcegroup[-1] -eq 'ase' -or $Arrays_resourcegroup[-1] -eq 'aue' -or $Arrays_resourcegroup[-1] -eq 'eus2' -or $Arrays_resourcegroup[-1] -eq 'euw')) {
 
              $targetsubscription = "sub-jda-cld-dr-solutions-01"
              $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-$($Arrays_resourcegroup[-1])"
