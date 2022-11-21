@@ -119,14 +119,15 @@ jobs:
                 if (${{ steps.target_components.outputs.targetsubscription }} -eq 'sub-jda-cld-dr-solutions-01'){
                   $VnetName = "vnet-dr-$($Arrays_resourcegroup[1])-01";
                   $VnetRg = "rg-jda-prod-network-$($Arrays_resourcegroup[1]))-01";
-                }else{
+                 }else{
                   $VnetName = "vnet-$($Arrays_resourcegroup[1])-01";
                   $VnetRg = "rg-network-$($Arrays_resourcegroup[1])-01"; }
                   
                   $subnetName = "sn-$($Arrays_resourcegroup[1])-dr-$locAbbr"
             
                   $subnet = Get-AzVirtualNetworkSubnetConfig -ResourceGroupName $VnetRg -VirtualNetwork $VnetName -Name $SubnetName  
-                   
+                    
+                  
               
                     
                 } else {
@@ -135,22 +136,18 @@ jobs:
                 }
                 Write-Host "================================================================================================================"
                 Write-Host "################################################## RG Details ##################################################"
-                Write-Host "SUBSCRIPTION        : $subscription"
-                Write-Host "resourceGroup       : $resourceGroup"
-                Write-Host "PRODUCT             : $product"
-                Write-Host "CUSTOMER NAME       : $CustomerName"
-                Write-Host "SERVERNAME          : $serverName"
-                Write-Host "region              : $region"
-                Write-Host "Operating System    : $osType"
-                Write-Host "Environment         : $environment"
-                Write-Host "APPLICATIONTYPE     : $appType"
-                Write-Host "APPLICATION         : $serverType (Azure)"
-                Write-Host "ROLLOUTFILENAME     : $rolloutFile"
-                Write-Host "ROLLOUTNAME         : $rolloutName"
-                Write-Host "MAINTENANCEENDTIME  : $maintenanceEndTime"
-                Write-Host "SFCASE              : $sfCase"
-                Write-Host "REQUESTOREMAIL      : $requestor"
-                Write-Host "SCRIPTPATH          : $scriptPath"
+                Write-Host "SUBSCRIPTION                : $Targetsubscription""
+                Write-Host "resourceGroup               : $resourceGroup"
+                Write-Host "PRODUCT                     : $product"
+                Write-Host "CUSTOMER NAME               : $CustomerName"
+                Write-Host "StroageAccount              : $StorageAccount"
+                Write-Host "region                      : $region"
+                Write-Host "ApplicationSecurityGroup    : $ApplicationSecurityGroup"
+                Write-Host "ApplicationSecurityGroup    : $ApplicationSecurityGroup"
+                Write-Host "NetworkSecurityGroup        : $NetworkSecurityGroup"
+                Write-Host "RecoveryServicesVault       : $RecoveryServicesVault"
+                Write-Host "LoadBalancer                : $LoadBalancer"
+                Write-Host "subnet                      : $subnet"
                 Write-Host "================================================================================================================"
                 # Input Validations
                 ## 1. Email
