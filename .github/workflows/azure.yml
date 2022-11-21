@@ -100,6 +100,57 @@ jobs:
         with:
           azPSVersion: "latest"
           inlineScript: |
-             $tr = "${{ steps.target_components.outputs.targetsubscription }}"
-             echo $tr
+             
+                $RGDetails = Get-AzResourceGroup -Name "${{ steps.target_components.outputs.targetResourceGroup }}"
+                if ($RGDetails) {
+                    $resourceGroup = $RGDetails.ResourceGroupName
+                    $region = $RGDetails.Location
+                    $CustomerName = $RGDetails.Tags.CustomerName
+                    $environment = $RGDetails.Tags.Environment_Type
+                    $product = $RGDetails.Tags.Product_Group
+                    $StorageAccount = $RGDetails.Deployments.StorageAccountName
+                    $ApplicationSecurityGroup= $RGDetails.Deployments.ApplicationSecurityGroupName
+                    $ApplicationSecurityGroup= $RGDetails.Deployments.ApplicationSecurityGroupName
+                    $NetworkSecurityGroup = $RGDetails.Deployments.NetworkSecurityGroupName
+                    $RecoveryServicesVault = $RGDetails.Deployments.RecoveryServicesVaultName
+                    $LoadBalancer = $RGDetails.Deployments.LoadBalancerName
+                    
+                    
+                } else {
+                    $validationError = "Server $($serverName)/Tags is not configured in Subscription or Incorrect Server/Subscription is Given, please check your given input again"
+                    throw "Server $($serverName)/Tags is not configured in Subscription or Incorrect Server/Subscription is Given, please check your given input again"
+                }
+                Write-Host "================================================================================================================"
+                Write-Host "################################################## VM Details ##################################################"
+                Write-Host "SUBSCRIPTION        : $subscription"
+                Write-Host "resourceGroup       : $resourceGroup"
+                Write-Host "PRODUCT             : $product"
+                Write-Host "CUSTOMER NAME       : $CustomerName"
+                Write-Host "SERVERNAME          : $serverName"
+                Write-Host "region              : $region"
+                Write-Host "Operating System    : $osType"
+                Write-Host "Environment         : $environment"
+                Write-Host "APPLICATIONTYPE     : $appType"
+                Write-Host "APPLICATION         : $serverType (Azure)"
+                Write-Host "ROLLOUTFILENAME     : $rolloutFile"
+                Write-Host "ROLLOUTNAME         : $rolloutName"
+                Write-Host "MAINTENANCEENDTIME  : $maintenanceEndTime"
+                Write-Host "SFCASE              : $sfCase"
+                Write-Host "REQUESTOREMAIL      : $requestor"
+                Write-Host "SCRIPTPATH          : $scriptPath"
+                Write-Host "================================================================================================================"
+                # Input Validations
+                ## 1. Email
+                foreach ($x in $requestor.Split(",")) {
+                    try {
+                        $temp = [mailaddress]$x
+                        if ($temp.Host -ne "blueyonder.com" -and $temp.Host -ne "jda.com") 
+                        {
+                            throw "Please Validate the Email Given $x"
+                        }
+                    } Catch {
+                        $validationError = "Please Validate the Email Given - $requestor"
+                        throw "Please Validate the Email Given - $requestor"
+                    }
+                  }
            
