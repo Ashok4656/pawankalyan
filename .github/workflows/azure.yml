@@ -33,7 +33,7 @@ jobs:
     outputs:
       Targetsubscription: ${{ steps.target_components.outputs.targetsubscription }}
       TargetresourceGroup: ${{ steps.target_components.outputs.targetResourceGroup }}
-      
+     
       
     steps:
       - uses: actions/checkout@v2    
@@ -84,16 +84,19 @@ jobs:
                  $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-eun"}
              echo $targetsubscription
              echo $targetResourceGroup
-            }
+             }
             else {
              echo "source subscription and source resource group location was not matched
              please select the appropriate resouece."
             }
+             echo "$TargetresourceGroup"
+             echo "$Targetsubscription"
+             
       - name: " Validate the core components in RG "
         id: vm_details
         uses: azure/powershell@v1
         with:
           azPSVersion: "latest"
           inlineScript: |
-           $serverDetails = Get-AzVM -Name "$TargetresourceGroup"
+           $serverDetails = Get-AzResourceGroup -Name "$TargetresourceGroup"
            
