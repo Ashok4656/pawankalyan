@@ -42,6 +42,7 @@ jobs:
         uses: azure/powershell@v1
         with:
          inlineScript: |
+            azPSVersion: "latest"
             $Arrays = "${{env.SOURCE_SUBSCRIPTION}}".Split("-")
 
             echo $Arrays[4]
