@@ -52,7 +52,7 @@ jobs:
 
              $targetsubscription = "sub-by-cld-solutions-aues-02"
 
-             echo $targetsubscription
+             echo $targetsubscription }
 
             if ($Arrays[4] -eq 'ase') {
 
