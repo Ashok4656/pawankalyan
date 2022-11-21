@@ -86,19 +86,19 @@ jobs:
 
              $targetsubscription = "sub-jda-cld-dr-solutions-01"
               if ($Arrays_resourcegroup[-1] -eq 'ase'){
-                 $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-ase)"}
+                 $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-ae"}
               if ($Arrays_resourcegroup[-1] -eq 'aue'){
-                 $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-aue)"}
+                 $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-ause"}
               if ($Arrays_resourcegroup[-1] -eq 'eus2'){
-                 $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-eus2)"}
+                 $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-cus"}
               if ($Arrays_resourcegroup[-1] -eq 'euw'){
-                 $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-euw)"}
+                 $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-eun"}
              echo $targetsubscription
              echo $targetResourceGroup
             }
             else {
              echo "source subscription and source resource group location was not matched
-             please select the appropriate resouece. "
+             please select the appropriate resouece."
             }
 
 
