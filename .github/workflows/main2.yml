@@ -38,8 +38,10 @@ jobs:
             echo "${{env.SOURCE_SUBSCRIPTION}}"
             
             
-      - name: "source subscription is equal to target subscription" 
-        run: |
+      - name: Run Azure PowerShell script
+        uses: azure/powershell@v1
+        with:
+         inlineScript: |
             $Arrays = "${{env.SOURCE_SUBSCRIPTION}}".Split("-")
 
             echo $Arrays[4]
