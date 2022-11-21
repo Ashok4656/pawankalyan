@@ -53,12 +53,36 @@ jobs:
              $targetsubscription = "sub-by-cld-solutions-aues-02"
 
              echo $targetsubscription
-            }
-            else {
 
-            Write-Host "subscription does not match "
+            if ($Arrays[4] -eq 'ase') {
 
+             $targetsubscription = "sub-by-cld-solutions-ae-02"
+
+             echo $targetsubscription
             }
+
+            if ($Arrays[4] -eq 'eus2') {
+
+             $targetsubscription = "sub-by-cld-solutions-cus-02"
+
+             echo $targetsubscription
+            }
+
+            if ($Arrays[4] -eq 'euw') {
+
+             $targetsubscription = "sub-by-cld-solutions-eun-02"
+
+             echo $targetsubscription
+            }
+           
+            if (${{env.SOURCE_SUBSCRIPTION}} -eq 'sub-jda-cld-solutions-01') {
+
+             $targetsubscription = "sub-jda-cld-dr-solutions-01"
+
+             echo $targetsubscription
+            }
+           
+
 
 
       
