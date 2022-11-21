@@ -56,13 +56,15 @@ jobs:
              $targetsubscription = "sub-by-cld-solutions-aues-02"
              $targetResourceGroup = "rg-$Arrays_resourcegroup[1]-dr-aues"
 
-             echo $targetsubscription }
+             echo $targetsubscription 
+             echo $targetResourceGroup }
 
             if ($Arrays_subscription[4] -eq 'ase' -and $Arrays_resourcegroup[-1] -eq 'ase') {
 
              $targetsubscription = "sub-by-cld-solutions-ae-02"
              $targetResourceGroup = "rg-$Arrays_resourcegroup[1]-dr-ae"
              echo $targetsubscription
+             echo $targetResourceGroup
             }
 
             if ($Arrays_subscription[4] -eq 'eus2' -and $Arrays_resourcegroup[-1] -eq 'eus2') {
@@ -71,6 +73,7 @@ jobs:
               $targetResourceGroup = "rg-$Arrays_resourcegroup[1]-dr-cus"
 
              echo $targetsubscription
+             echo $targetResourceGroup
             }
 
             if ($Arrays_subscription[4] -eq 'euw' -and $Arrays_resourcegroup[-1] -eq 'euw') {
@@ -79,6 +82,7 @@ jobs:
              $targetResourceGroup = "rg-$Arrays_resourcegroup[1]-dr-enu"
 
              echo $targetsubscription
+             echo $targetResourceGroup
             }
            
             if ("${{env.SOURCE_SUBSCRIPTION}}" -eq 'sub-jda-cld-solutions-01' ) {
