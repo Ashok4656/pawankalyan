@@ -26,19 +26,20 @@ env:
   SOURCE_SUBSCRIPTION: "${{ github.event.inputs.Subscription }}"
   SOURCE_RESOURCEGROUP: "${{ github.event.inputs.ResourceGroup }}"
   REQUESTOREMAIL: "${{ github.event.inputs.requestor }}"
- 
+  
 jobs:
   GET_DETAILS_FROM_AZURE:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+    outputs:
+      Targetsubscription: ${{ steps.target_components.outputs.targetsubscription }}
+      TargetresourceGroup: ${{ steps.target_components.outputs.targetResourceGroup }}
       
-      - name: "source subscription is equal to target subscription"
-        run: 
-            echo "${{env.SOURCE_SUBSCRIPTION}}"
-            
-            
-      - name: Run Azure PowerShell script
+      
+    steps:
+      - uses: actions/checkout@v2    
+      
+      - name: Validate the source to target
+        id: target_components
         uses: azure/powershell@v1
         with:
          azPSVersion: "latest"
@@ -67,7 +68,7 @@ jobs:
             if ($Arrays_subscription[4] -eq 'eus2' -and $Arrays_resourcegroup[-1] -eq 'eus2') {
 
              $targetsubscription = "sub-by-cld-solutions-cus-02"
-              $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-cus"
+             $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-cus"
 
              echo $targetsubscription
              echo $targetResourceGroup
@@ -101,6 +102,20 @@ jobs:
              please select the appropriate resouece."
             }
 
+      - name: " Validate the core components in RG  ${{ github.event.inputs.ServerName }}"
+        id: vm_details
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            # Assign Values
+            $subscription = '${{ env.SUBSCRIPTION }}'
+            $serverName = '${{ env.SERVERNAME }}'.ToLower().Trim()
+            $appType = '${{ env.APPLICATIONTYPE }}'
+            $rolloutFile = '${{ env.ROLLOUTFILENAME }}'.Trim()
+            $rolloutName = '${{ env.ROLLOUTNAME }}'.Trim()
+            $maintenanceEndTime = '${{ env.MAINTENANCEENDTIME }}'.Trim()
+            $sfCase = '${{ env.SFCASE }}'.Trim()
+            $requestor = '${{ env.REQUESTOREMAIL }}'.Trim()
+            $scriptPath = '${{ env.SCRIPTPATH }}'
 
 
-      
