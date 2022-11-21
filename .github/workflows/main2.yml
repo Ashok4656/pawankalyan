@@ -48,9 +48,6 @@ jobs:
             
             $Arrays_resourcegroup = "${{env.SOURCE_RESOURCEGROUP}}".Split("-")
 
-            echo $Arrays_subscription[4]
-            echo $Arrays_resourcegroup[-1]
-
             if ($Arrays_subscription[4] -eq 'aue' -and $Arrays_resourcegroup[-1] -eq 'aue') {
 
              $targetsubscription = "sub-by-cld-solutions-aues-02"
@@ -67,7 +64,7 @@ jobs:
              echo $targetResourceGroup
             }
 
-            if ($Arrays_subscription[4] -eq 'eus2' -or $Arrays_resourcegroup[-1] -eq 'eus2') {
+            if ($Arrays_subscription[4] -eq 'eus2' -and $Arrays_resourcegroup[-1] -eq 'eus2') {
 
              $targetsubscription = "sub-by-cld-solutions-cus-02"
               $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-cus"
@@ -85,12 +82,13 @@ jobs:
              echo $targetResourceGroup
             }
            
-            if ("${{env.SOURCE_SUBSCRIPTION}}" -eq 'sub-jda-cld-solutions-01' ) {
+            if ("${{env.SOURCE_SUBSCRIPTION}}" -eq 'sub-jda-cld-solutions-01' -and  $Arrays_resourcegroup[-1] -eq ase -or $Arrays_resourcegroup[-1] -eq aue -or $Arrays_resourcegroup[-1] -eq eus2 -or $Arrays_resourcegroup[-1] -eq euw) {
 
              $targetsubscription = "sub-jda-cld-dr-solutions-01"
-            
+             $targetResourceGroup = "rg-$($Arrays_resourcegroup[1])-dr-$($Arrays_resourcegroup[-1])"
 
              echo $targetsubscription
+             echo $targetResourceGroup
             }
            
 
