@@ -58,14 +58,14 @@ jobs:
 
              echo $targetsubscription }
 
-            if ($Arrays[4] -eq 'ase' -and $Arrays_resourcegroup[-1] -eq 'ase') {
+            if ($Arrays_subscription[4] -eq 'ase' -and $Arrays_resourcegroup[-1] -eq 'ase') {
 
              $targetsubscription = "sub-by-cld-solutions-ae-02"
              $targetResourceGroup = "rg-$Arrays_resourcegroup[1]-dr-ae"
              echo $targetsubscription
             }
 
-            if ($Arrays[4] -eq 'eus2' -and $Arrays_resourcegroup[-1] -eq 'eus2') {
+            if ($Arrays_subscription[4] -eq 'eus2' -and $Arrays_resourcegroup[-1] -eq 'eus2') {
 
              $targetsubscription = "sub-by-cld-solutions-cus-02"
               $targetResourceGroup = "rg-$Arrays_resourcegroup[1]-dr-cus"
@@ -73,7 +73,7 @@ jobs:
              echo $targetsubscription
             }
 
-            if ($Arrays[4] -eq 'euw' -and $Arrays_resourcegroup[-1] -eq 'euw') {
+            if ($Arrays_subscription[4] -eq 'euw' -and $Arrays_resourcegroup[-1] -eq 'euw') {
 
              $targetsubscription = "sub-by-cld-solutions-eun-02"
              $targetResourceGroup = "rg-$Arrays_resourcegroup[1]-dr-enu"
