@@ -94,3 +94,5 @@ jobs:
         uses: azure/powershell@v1
         with:
           inlineScript: |
+           $serverDetails = Get-AzVM -Name "$targetResourceGroup"
+           
