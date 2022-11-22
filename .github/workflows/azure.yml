@@ -1,4 +1,4 @@
-name: Azure
+name: Azure Site Recovery
 on:
   workflow_dispatch:
     inputs:
