@@ -93,9 +93,43 @@ jobs:
              echo "$TargetresourceGroup"
              echo "$Targetsubscription"
             
-             
+      - name: "connecting to ${{env.SUBSCRIPTION}} subscription"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDS_SECRETE_CLDSL01 }}
+          enable-AzPSSession: true
+        if: ${{ env.SUBSCRIPTION == 'sub-jda-cld-solutions-01' }}
+
+      - name: "connecting to ${{env.SUBSCRIPTION}} subscription"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDS_SECRETE_CLDSL02_EUS2 }}
+          enable-AzPSSession: true
+        if: ${{ env.SUBSCRIPTION == 'sub-by-cld-solutions-eus2-02' }}
+
+      - name: "connecting to ${{env.SUBSCRIPTION}} subscription"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDS_SECRETE_CLDSL02_EUW }}
+          enable-AzPSSession: true
+        if: ${{ env.SUBSCRIPTION == 'sub-by-cld-solutions-euw-02' }}
+
+      - name: "connecting to ${{env.SUBSCRIPTION}} subscription"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDS_SECRETE_CLDSL02_ASE }}
+          enable-AzPSSession: true
+        if: ${{ env.SUBSCRIPTION == 'sub-by-cld-solutions-ase-02' }}
+
+      - name: "connecting to ${{env.SUBSCRIPTION}} subscription"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDS_SECRETE_CLDSL02_AUE }}
+          enable-AzPSSession: true
+        if: ${{ env.SUBSCRIPTION == 'sub-by-cld-solutions-aue-02' }}
+    
       - name: " Validate the core components in RG "
-        id: vm_details
+        id: RG_details
         uses: azure/powershell@v1
         with:
           azPSVersion: "latest"
