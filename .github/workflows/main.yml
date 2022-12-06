@@ -35,7 +35,22 @@ jobs:
       
       - name: "source subscription is equal to target subscription"
         run:
-            echo "${{env.SOURCE_SUBSCRIPTION}}"
+            echo "HelloWord"
       
+  
+  GET_DETAILS_FROM_DB:
+    runs-on: ubuntu-latest
+    if: 'skip the job'
+    
+    
+    
+    steps:
+      - uses: actions/checkout@v2
       
+      - name: "source subscription is equal to target subscription"
+        run:
+            echo "HelloWord2"
+  
+  
+  
         
