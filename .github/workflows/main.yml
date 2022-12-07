@@ -40,7 +40,7 @@ jobs:
   
   GET_DETAILS_FROM_DB:
     runs-on: ubuntu-latest
-    needs: [GET_DETAILS_FROM_AZURE]
+    
     if: failure() 
     steps:
       - uses: actions/checkout@v2
@@ -52,7 +52,7 @@ jobs:
   
   GET_DETAILS_FROM_APP:
     runs-on: ubuntu-latest
-    needs: [GET_DETAILS_FROM_DB]
+  
     if: failure() 
     steps:
       - uses: actions/checkout@v2
