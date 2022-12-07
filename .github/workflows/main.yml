@@ -47,8 +47,7 @@ jobs:
       
       - name: "source subscription is equal to target subscription"
         run:
-            echo "HelloWord2"
-  
+            srting
   
   
   GET_DETAILS_FROM_APP:
