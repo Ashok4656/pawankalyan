@@ -36,13 +36,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: "source subscription is equal to target subscription"
+      - name: " Validate the core components in RG "
         id: RG
-        run:
-          $a = 2
-          if ($a -eq '2') {
-            $ar = "ashok"    }
-           echo "::set-output name=ar::$ar"
+        uses: azure/powershell@v1
+        with:
+          azPSVersion: "latest"
+          inlineScript: |
+            
+            $a = 2
+            if ($a -eq '2') {
+              $ar = "ashok"    }
+             echo "::set-output name=ar::$ar"
 
   GET_DETAILS_FROM_DB:
     runs-on: ubuntu-latest
