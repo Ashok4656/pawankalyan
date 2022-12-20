@@ -67,7 +67,7 @@ jobs:
       
       - name: "source subscription is equal to target subscription"
         run:
-            echo "HelloWord3"
+            
             echo "${{ jobs.GET_DETAILS_FROM_AZURE.outputs.AR }}"
  
         
