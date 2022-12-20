@@ -39,6 +39,7 @@ jobs:
       - name: "source subscription is equal to target subscription"
         id: RG
         run:
+          
             $ar = "ashok"
            echo "::set-output name=ar::$ar"
   
