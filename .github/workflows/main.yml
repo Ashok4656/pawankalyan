@@ -29,14 +29,18 @@ env:
  
 jobs:
   GET_DETAILS_FROM_AZURE:
+    
     runs-on: ubuntu-latest
+    outputs:
+      AR: ${{ steps.RG.outputs.ar }}
     steps:
       - uses: actions/checkout@v2
       
       - name: "source subscription is equal to target subscription"
+        id: RG
         run:
-            string
-      
+            $ar = "ashok"
+           echo "::set-output name=ar::$ar"
   
   GET_DETAILS_FROM_DB:
     runs-on: ubuntu-latest
@@ -47,7 +51,7 @@ jobs:
       
       - name: "source subscription is equal to target subscription"
         run:
-            echo "HelloWord3"
+            echo "${{ needs.GET_DETAILS_FROM_AZURE.outputs.AR }}"
   
   
   GET_DETAILS_FROM_APP:
@@ -60,5 +64,6 @@ jobs:
       - name: "source subscription is equal to target subscription"
         run:
             echo "HelloWord3"
+            echo "${{ needs.GET_DETAILS_FROM_AZURE.outputs.AR }}"
   
         
