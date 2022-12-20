@@ -17,10 +17,7 @@ on:
         description: "Provide Source Resource Group"
         required: true
     
-      requestor:
-        description: 'Provide Requestor email id (If multiple Emails provide inputs as "abc@blueyonder.com,xyz@jda.com" with Comma[,] separated)'
-        required: true
-
+     
 
 env:
   SOURCE_SUBSCRIPTION: "${{ github.event.inputs.Subscription }}"
